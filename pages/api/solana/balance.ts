@@ -7,8 +7,9 @@ export default async function balance(
   res: NextApiResponse<string | number>,
 ) {
   try {
+    // how did this request body have network, address in it?
     const {network, address} = req.body;
-    const url = getNodeURL(network);
+    const url = getNodeURL(network); // => figment-solanan/lib
     const connection = new Connection(url, 'confirmed');
     const publicKey = new PublicKey(address);
     const balance = await connection.getBalance(publicKey);
